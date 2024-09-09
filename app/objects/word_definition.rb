@@ -1,4 +1,4 @@
-class WordOfTheDay
+class WordDefinition
   attr_reader :word, :definition, :phonetic, :example
 
   def initialize(word:, definition:, phonetic:, example:)
