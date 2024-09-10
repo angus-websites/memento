@@ -18,6 +18,10 @@ class WordOfDayRepository
     find_by_date(Date.today)
   end
 
+  def all_words
+    WordOfDay.all
+  end
+
   def find_most_recent
     # Find the most recent WordOfDay entry
     WordOfDay.order(date: :desc).first
