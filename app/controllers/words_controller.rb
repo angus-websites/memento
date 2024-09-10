@@ -17,7 +17,7 @@ class WordsController < ApplicationController
     @definition = word_of_day.definition
     @phonetic = word_of_day.phonetic
     @example = word_of_day.example
-    @date = word_of_day.date.strftime("%d %B %Y")
+    @date = word_of_day.formatted_date
   end
 
   def day
@@ -30,6 +30,6 @@ class WordsController < ApplicationController
     @definition = word_of_day.definition
     @phonetic = word_of_day.phonetic
     @example = word_of_day.example
-    @date = word_of_day.date.strftime("%d %B %Y")
+    @date = word_of_day.formatted_date
   end
 end

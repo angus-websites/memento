@@ -1,31 +1,15 @@
-<div class="py-24 sm:py-32 mx-auto">
+<div class="mx-auto  py-24 sm:py-32 ">
     <div class="mx-auto max-w-4xl sm:px-6 lg:px-8">
 
-      <p>Past words of the day...</p>
+      <div class="px-6lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Past words</h2>
+          <p class="mt-6 text-lg leading-8 text-gray-600">View the previous words of the day here</p>
+        </div>
+      </div>
 
-<!--      <ul role="list" class="divide-y divide-slate-200">-->
-        <%# @words.each do |word| %>
-          <%#= link_to word_path(word), class: "relative flex justify-between py-5 hover:bg-gray-50" do %>
-<!--            <div class="flex gap-x-4 pr-6 sm:w-1/2 sm:flex-none">-->
-<!--              <div class="min-w-0 flex-auto">-->
-<!--                <p class="text-sm font-semibold leading-6 text-gray-900">-->
-                  <%#=word.word %>
-<!--                </p>-->
-<!--                <p class="mt-1 flex text-xs leading-5 text-gray-500">-->
-                  <%#=word.date %>
-<!--                </p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="flex items-center">-->
-<!--              <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
-<!--                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />-->
-<!--              </svg>-->
-<!--            </div>-->
-          <%# end %>
-        <%# end %>
-<!--      </ul>-->
 
-      <ul role="list" class="divide-y divide-slate-200">
+      <ul role="list" class="divide-y divide-slate-200 mt-6 ">
         <% @words.each do |word| %>
           <%= link_to word_path(word), class: "relative flex justify-between gap-x-6 px-4 py-5 hover:bg-slate-100 sm:px-6 lg:px-8" do %>
             <div class="flex min-w-0 gap-x-4">
@@ -34,7 +18,7 @@
                   <%=word.word %>
                 </p>
                 <p class="mt-1 flex text-xs leading-5 text-gray-500">
-                  <%=word.date %>
+                  <%=word.english_date %>
                 </p>
               </div>
             </div>
