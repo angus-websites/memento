@@ -20,16 +20,19 @@ class WordsController < ApplicationController
     @date = word_of_day.formatted_date
   end
 
+  # Show the current word of the day
   def day
-
-    # Show the current word of the day
 
     word_of_day = WordOfDayRepository.new.find_most_recent
 
-    @word_of_the_day = word_of_day.word
-    @definition = word_of_day.definition
-    @phonetic = word_of_day.phonetic
-    @example = word_of_day.example
-    @date = word_of_day.formatted_date
+    if word_of_day
+      @word_of_the_day = word_of_day.word
+      @definition = word_of_day.definition
+      @phonetic = word_of_day.phonetic
+      @example = word_of_day.example
+      @date = word_of_day.formatted_date
+    else
+      render "errors/no_word"
+    end
   end
 end
