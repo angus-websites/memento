@@ -1,8 +1,16 @@
+
+require_relative "../repositories/word_of_day_repository"
+
 class WordsController < ApplicationController
   def show
-    @word_of_the_day = "Memento"
-    @definition = "Memento is a synonym of souvenir; it refers to something that is kept as a reminder of a person, place, or thing."
-    @phonetic = "məˈmɛntoʊ"
-    @example = "I kept the shell as a memento of my visit to the seashore."
+
+    # Use the repository to get the word of the day
+
+    word_of_day = WordOfDayRepository.new.find_most_recent
+
+    @word_of_the_day = word_of_day.word
+    @definition = word_of_day.definition
+    @phonetic = word_of_day.phonetic
+    @example = word_of_day.example
   end
 end
