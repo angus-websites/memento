@@ -10,15 +10,6 @@ class WordOfDayRepository
     )
   end
 
-  def load_default
-    WordDefinition.new(
-      word: "Memento",
-      definition: "Memento is a synonym of souvenir; it refers to something that is kept as a reminder of a person, place, or thing.",
-      phonetic: "məˈmɛntoʊ",
-      example: "I kept the shell as a memento of my visit to the seashore."
-    )
-  end
-
   def find_by_date(date)
     WordOfDay.find_by(date: date)
   end
@@ -29,6 +20,10 @@ class WordOfDayRepository
 
   def all_words
     WordOfDay.all
+  end
+
+  def find_by_id(id)
+    WordOfDay.find_by(id: id)
   end
 
   def find_most_recent

@@ -10,14 +10,17 @@ class WordsController < ApplicationController
 
   def show
     # Find the word by its ID (params[:id] is automatically populated by Rails from the URL)
-    word_of_day = WordOfDay.find(params[:id])
+    word_of_day = WordOfDayRepository.new.find_by_id(params[:id])
 
-    # Assign the word's attributes to instance variables for the view
-    @word_of_the_day = word_of_day.word
-    @definition = word_of_day.definition
-    @phonetic = word_of_day.phonetic
-    @example = word_of_day.example
-    @date = word_of_day.formatted_date
+    if word_of_day
+      @word_of_the_day = word_of_day.word
+      @definition = word_of_day.definition
+      @phonetic = word_of_day.phonetic
+      @example = word_of_day.example
+      @date = word_of_day.formatted_date
+    else
+      render "errors/no_word"
+    end
   end
 
   # Show the current word of the day
