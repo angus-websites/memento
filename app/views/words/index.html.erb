@@ -5,7 +5,7 @@
       <ul>
 
         <% @words.each do |word| %>
-          <li><%=word.word %></li>
+          <%= link_to word.word, word_path(word) %>
         <% end %>
       </ul>
 
