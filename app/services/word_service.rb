@@ -15,23 +15,53 @@ class WordService
     )
   end
 
-  # Fetches a random word from an API
-  def fetch
-    # response = YourApiClient.get_random_word
-    #
-    # WordDefinition.new(
-    #   word: response.word,
-    #   definition: response.definition,
-    #   phonetic: response.phonetic,
-    #   example: response.example
-    # )
-    # WordDefinition.new(
-    #   word: "Memento",
-    #   definition: "Memento is a synonym of souvenir; it refers to something that is kept as a reminder of a person, place, or thing.",
-    #   phonetic: "məˈmɛntoʊ",
-    #   example: "I kept the shell as a memento of my visit to the seashore."
-    # )
+  # Fetches a given words data from an API
+  def fetch(word)
+    url = "https://api.dictionaryapi.dev/api/v2/entries/en/#{word}"
+    response = HTTParty.get(url)
+    if response.success?
+      response.body
+    else
+      raise "Error fetching data from API"
+    end
   end
 
+  # Generate a random word of the day
+  def generate_word_of_day
+
+    url = "https://random-word-api.herokuapp.com/word"
+    response = HTTParty.get(url)
+    if response.success?
+      response = JSON.parse(response.body)
+      word = response[0]
+
+      # Ensure the word doesn't already exist in the database
+      if @repository.exists?(word)
+
+        # Run again
+        generate_word_of_day
+      else
+
+        # Fetch the definition, phonetic, and example for the word
+        json_data = fetch(word)
+
+        # Parse the JSON data and store the word in the database
+        parse_and_store(json_data)
+      end
+    else
+      raise "Error fetching data from API"
+    end
+
+  end
+
+  # Parses the JSON string and stores the word in the database
+  def parse_and_store(json_data)
+    # Create a parse service to handle the JSON data
+    data = ParseService.new.parse_json(json_data)
+
+    # Store the word in the database
+    store_word(data[:word], data[:definition], data[:phonetic], data[:example])
+
+  end
 
 end
