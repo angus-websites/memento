@@ -23,11 +23,17 @@ class WordsController < ApplicationController
     end
   end
 
+  def test
+    # Generate a random word of the day
+    WordService.new.generate_word_of_day
+    redirect_to root_path
+  end
+
   # Show the current word of the day
   def day
 
     word_of_day = WordOfDayRepository.new.find_most_recent
-
+    puts "most recent word 2: #{word_of_day.word}"
     if word_of_day
       @word_of_the_day = word_of_day.word
       @definition = word_of_day.definition

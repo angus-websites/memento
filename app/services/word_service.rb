@@ -1,3 +1,4 @@
+require "httparty"
 class WordService
 
   def initialize(repository = WordOfDayRepository.new)
@@ -32,10 +33,12 @@ class WordService
     url = "https://random-word-api.herokuapp.com/word"
     response = HTTParty.get(url)
     if response.success?
-      response = JSON.parse(response.body)
-      word = response[0]
+      parsed_response = JSON.parse(response.body)
+      word = parsed_response[0]
+
 
       # Ensure the word doesn't already exist in the database
+      #
       if @repository.exists?(word)
 
         # Run again
@@ -47,6 +50,7 @@ class WordService
 
         # Parse the JSON data and store the word in the database
         parse_and_store(json_data)
+
       end
     else
       raise "Error fetching data from API"
@@ -60,7 +64,7 @@ class WordService
     data = ParseService.new.parse_json(json_data)
 
     # Store the word in the database
-    store_word(data[:word], data[:definition], data[:phonetic], data[:example])
+    store_word(data["word"], data["definition"], data["phonetic"], data["example"])
 
   end
 

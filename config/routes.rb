@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # Error route for when there is no word of the day
   get "no_word", to: "errors#no_word", as: :no_word
 
+  # Test route for the word of the day
+  get "test_day", to: "words#test", as: :day
+
   # Add a resourceful route for words
   resources :words, only: [ :show, :index ]
 

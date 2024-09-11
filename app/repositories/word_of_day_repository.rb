@@ -1,7 +1,9 @@
 class WordOfDayRepository
   def create(word:, definition:, phonetic:, example:, date: Date.today)
+
+    puts "Creating word of the day: #{word}"
     # Create a new WordOfDay record in the database
-    WordOfDay.create!(
+    WordOfDay.create(
       word: word,
       definition: definition,
       phonetic: phonetic,
