@@ -6,7 +6,7 @@ class CreateWordOfDays < ActiveRecord::Migration[7.2]
       t.text :phonetic
       t.text :example
       t.date :date
-
+      t.used :boolean, default: false
       t.timestamps
     end
   end

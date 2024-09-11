@@ -23,12 +23,6 @@ class WordsController < ApplicationController
     end
   end
 
-  def test
-    # Generate a random word of the day
-    WordService.new.generate_word_of_day
-    redirect_to root_path
-  end
-
   # Show the current word of the day
   def day
 
