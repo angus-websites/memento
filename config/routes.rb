@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # Error route for when there is no word of the day
+  get "no_word", to: "errors#no_word", as: :no_word
+
   # Add a resourceful route for words
   resources :words, only: [ :show, :index ]
 

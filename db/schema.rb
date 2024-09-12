@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_214937) do
     t.text "phonetic"
     t.text "example"
     t.date "date"
+    t.boolean "used", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

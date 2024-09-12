@@ -1,7 +1,8 @@
 class WordOfDayRepository
   def create(word:, definition:, phonetic:, example:, date: Date.today)
+    puts "Creating word of the day: #{word}"
     # Create a new WordOfDay record in the database
-    WordOfDay.create!(
+    WordOfDay.create(
       word: word,
       definition: definition,
       phonetic: phonetic,
@@ -15,11 +16,16 @@ class WordOfDayRepository
   end
 
   def find_for_today
-    find_by_date(Date.today)
+    # Find a word where the date is today
+    WordOfDay.find_by(date: Date.today)
   end
 
   def all_words
     WordOfDay.all
+  end
+
+  def find_by_id(id)
+    WordOfDay.find_by(id: id)
   end
 
   def find_most_recent
