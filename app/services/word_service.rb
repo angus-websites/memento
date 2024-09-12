@@ -5,8 +5,9 @@ class WordService
     @repository = repository
   end
 
-  def all_words
-    @repository.all_words
+  # The past 50 words that have been used
+  def past_words
+    @repository.all_words.where(used: true).order(date: :desc).limit(50)
   end
 
   # Fetch the current word of the day
@@ -18,9 +19,8 @@ class WordService
   # Fetch a word by its ID
   def get_word_from_id(id)
     word = @repository.find_by_id(id)
-
-    # Check the "used" field to see if the word has been used
-    if word && !word.used
+    # Check the "used" field is true
+    if word&.used
       word
     else
       nil

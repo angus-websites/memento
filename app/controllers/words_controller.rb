@@ -5,11 +5,13 @@ class WordsController < ApplicationController
 
   def initialize(service = WordService.new)
     @service = service
+    # Super
+    super()
   end
 
   def index
     # Show all the past words of the day
-    @words = @service.all_words
+    @words = @service.past_words
   end
 
   def show
@@ -23,7 +25,7 @@ class WordsController < ApplicationController
       @example = word_of_day.example
       @date = word_of_day.formatted_date
     else
-      render "errors/no_word"
+      render "errors/not_found"
     end
   end
 
