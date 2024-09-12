@@ -16,7 +16,8 @@ class WordOfDayRepository
   end
 
   def find_for_today
-    find_by_date(Date.today)
+    # Find a word where the date is today
+    WordOfDay.find_by(date: Date.today)
   end
 
   def all_words

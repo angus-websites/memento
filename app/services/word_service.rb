@@ -5,14 +5,25 @@ class WordService
     @repository = repository
   end
 
-  # Fetches a given words data from an API
-  def fetch(word)
-    url = "https://api.dictionaryapi.dev/api/v2/entries/en/#{word}"
-    response = HTTParty.get(url)
-    if response.success?
-      response.body
+  def all_words
+    @repository.all_words
+  end
+
+  # Fetch the current word of the day
+  def get_word_of_today
+    # Find the word of the day for today
+    @repository.find_for_today
+  end
+
+  # Fetch a word by its ID
+  def get_word_from_id(id)
+    word = @repository.find_by_id(id)
+
+    # Check the "used" field to see if the word has been used
+    if word && !word.used
+      word
     else
-      raise "Error fetching data from API"
+      nil
     end
   end
 
