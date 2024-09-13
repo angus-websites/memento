@@ -20,7 +20,7 @@ gem "jbuilder"
 # gem "redis", ">= 4.0.1"
 gem "tailwindcss-rails"
 
-gem "whenever"
+gem "whenever", require: false
 
 gem "pg"
 

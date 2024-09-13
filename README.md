@@ -1,24 +1,15 @@
-# README
+# Memento
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Memento is a simple app to show a word of the day and it's definition.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Clone the repository
 
-* System dependencies
+```bash
+git clone git@github.com:angus-websites/memento.git
+```
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
