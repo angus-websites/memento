@@ -48,8 +48,6 @@ COPY --from=build /rails /rails
 # Install Foreman (for running multiple processes)
 RUN gem install foreman
 
-# CMD to start both Rails and Clockwork
-
 
 # Entrypoint prepares the database
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
