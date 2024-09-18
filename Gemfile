@@ -20,9 +20,9 @@ gem "jbuilder"
 # gem "redis", ">= 4.0.1"
 gem "tailwindcss-rails"
 
-gem "whenever", require: false
-
 gem "pg"
+
+gem "clockwork"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
