@@ -49,9 +49,6 @@ COPY --from=build /rails /rails
 RUN gem install foreman
 
 
-# Entrypoint prepares the database
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
 # Expose Rails server port
 EXPOSE 3000
 
