@@ -1,7 +1,14 @@
 # syntax = docker/dockerfile:1
+
+# This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
+# docker build -t my-app .
+# docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
+
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.1.4
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
+# Rails app lives here
 WORKDIR /rails
 
 # Install base packages
@@ -10,14 +17,13 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y libpq-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Set production environment and paths
+# Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    GEM_HOME="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development:test"
+    BUNDLE_WITHOUT="development"
 
-# Build stage
+# Throw-away build stage to reduce size of final image
 FROM base AS build
 
 # Install packages needed to build gems
@@ -25,23 +31,26 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Copy Gemfiles and install application gems
+# Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --path "${BUNDLE_PATH}" --deployment --without development test && \
-    rm -rf "${BUNDLE_PATH}/ruby/*/cache" "${BUNDLE_PATH}/ruby/*/bundler/gems/*/.git" && \
+RUN bundle install && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
 # Copy application code
 COPY . .
 
-# Precompile bootsnap and assets
+# Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
+
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-# Final stage
+
+# Final stage for app image
 FROM base
 
-# Copy built artifacts (gems and app)
+# Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
@@ -49,7 +58,8 @@ COPY --from=build /rails /rails
 RUN gem install foreman
 
 
-# Expose Rails server port
+# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 
+# Run foreman
 CMD ["foreman", "start"]
