@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_09_214937) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_19_190823) do
   create_table "word_of_days", force: :cascade do |t|
     t.string "word"
     t.text "definition"
@@ -20,5 +20,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_214937) do
     t.boolean "used", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["word"], name: "index_word_of_days_on_word", unique: true
   end
 end
