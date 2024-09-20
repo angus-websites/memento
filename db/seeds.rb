@@ -1,6 +1,7 @@
 
 # Clear existing data
 WordOfDay.delete_all
+Suggestion.delete_all
 
 
 WordOfDay.create!(
@@ -42,3 +43,15 @@ WordOfDay.create!(
   example: "I kept the shell as a memento of my visit to the seashore.",
   date: Date.today
 )
+
+# Create suggestions
+
+Suggestion.create!(
+	word: "Farmer",
+)
+
+Suggestion.create!(
+	word: "Horse",
+	definition: "a large animal with four legs that people ride on or use for carrying things or pulling vehicles",
+	example: "She rode the horse into the field",
+	)

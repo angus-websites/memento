@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_19_190823) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_20_164309) do
+  create_table "suggestions", force: :cascade do |t|
+    t.string "word", null: false
+    t.text "definition"
+    t.string "phonetic"
+    t.text "example"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "word_of_days", force: :cascade do |t|
     t.string "word"
     t.text "definition"
