@@ -1,5 +1,4 @@
-<div class="py-24 sm:py-32 mx-auto">
-    <div class="mx-auto max-w-4xl sm:px-6 lg:px-8">
+<%= render 'partials/container' do %>
       <%= render partial: 'word_card', locals: {
         date: @date,
         word: @word_of_the_day,
@@ -7,5 +6,5 @@
         definition: @definition,
         example: @example
       } %>
-    </div>
-</div>
+<% end %>
+

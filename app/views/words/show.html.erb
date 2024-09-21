@@ -1,6 +1,5 @@
-<div class="py-24 sm:py-32 mx-auto">
-    <div class="mx-auto max-w-4xl sm:px-6 lg:px-8">
-      <nav class="flex py-5" aria-label="Breadcrumb">
+<%= render 'partials/container' do %>
+  <nav class="flex py-5" aria-label="Breadcrumb">
         <ol role="list" class="mx-auto lg:m-0 flex items-center space-x-4">
           <li>
             <div>
@@ -38,5 +37,4 @@
         definition: @definition,
         example: @example
       } %>
-    </div>
-</div>
+<% end %>
