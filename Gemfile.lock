@@ -106,6 +106,8 @@ GEM
     erubi (1.13.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hcaptcha (7.1.0)
+      json
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -300,6 +302,7 @@ DEPENDENCIES
   clockwork
   debug
   error_highlight (>= 0.4.0)
+  hcaptcha (~> 7.1)
   importmap-rails
   jbuilder
   pg

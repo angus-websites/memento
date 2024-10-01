@@ -5,14 +5,15 @@
       <p class="mt-6 text-lg leading-8 text-gray-600">Submit a suggestion for a new word of the day</p>
     </div>
   </div>
-<form class="px-8">
+  <form class="px-8 h-captcha" action="/suggestions" method="post">
   <div class="space-y-12 sm:space-y-16">
     <div>
       <div class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
           <label for="word" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Word</label>
           <div class="mt-2 sm:col-span-2 sm:mt-0">
-            <input name="word" type="text" placeholder="Sigma" maxlength="40"  id="word" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6">
+            <input name="word" type="text" placeholder="Sigma" maxlength="40"  id="word" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-600  sm:text-sm sm:leading-6">
+
           </div>
         </div>
 
@@ -27,7 +28,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
           <label for="phonetic" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Phonetic <small class="text-slate-500">(Optional)</small></label>
           <div class="mt-2 sm:col-span-2 sm:mt-0">
-            <input name="phonetic" type="text" placeholder="sig-mə" maxlength="45"  id="phonetic" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6">
+            <input name="phonetic" type="text" placeholder="sig-mə" maxlength="45"  id="phonetic" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:text-sm sm:leading-6">
             <p class="mt-3 text-sm leading-6 text-gray-600">Give the Phonetic of this word</p>
           </div>
         </div>
@@ -37,6 +38,14 @@
           <div class="mt-2 sm:col-span-2 sm:mt-0">
             <textarea name="example" id="example" maxlength="250" placeholder="Instead of following the crowd, she took a sigma approach and pursued her own path."  rows="3" class="block w-full max-w-2xl rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:text-sm sm:leading-6"></textarea>
             <p class="mt-3 text-sm leading-6 text-gray-600">Use the word in a sentence</p>
+          </div>
+        </div>
+
+        <!-- hCaptcha field -->
+        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+          <label for="captcha" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Captcha</label>
+          <div class="mt-2 sm:col-span-2 sm:mt-0">
+            <div class="h-captcha" data-sitekey="your-hcaptcha-site-key"></div>
           </div>
         </div>
 
