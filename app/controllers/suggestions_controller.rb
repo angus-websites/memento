@@ -3,10 +3,11 @@ class SuggestionsController < ApplicationController
   end
 
   def create
-    if verify_hcaptcha
-      # Your existing code to handle form submission
+    captcha_validated, captcha_response = verify_hcaptcha
+    if captcha_validated
+      puts("Captcha validated")
     else
-      flash[:alert] = "hCaptcha verification failed, please try again."
+      flash[:error] = captcha_response[:error_codes]
       render :new
     end
   end

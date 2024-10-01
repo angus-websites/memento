@@ -5,7 +5,7 @@
       <p class="mt-6 text-lg leading-8 text-gray-600">Submit a suggestion for a new word of the day</p>
     </div>
   </div>
-  <form class="px-8 h-captcha" action="/suggestions" method="post">
+  <form class="px-8" action="/suggestions" method="post">
   <div class="space-y-12 sm:space-y-16">
     <div>
       <div class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
@@ -45,7 +45,7 @@
         <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
           <label for="captcha" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Captcha</label>
           <div class="mt-2 sm:col-span-2 sm:mt-0">
-            <div class="h-captcha" data-sitekey="your-hcaptcha-site-key"></div>
+            <div class="h-captcha" data-sitekey="<%= Hcaptcha.configuration.site_key %>"></div>
           </div>
         </div>
 
